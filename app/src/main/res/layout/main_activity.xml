@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <co.feip.fefu2025.CustomFlexLayout
+            android:id="@+id/layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top" />
+
+    </ScrollView>
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:text="@string/add" />
+
+</LinearLayout>

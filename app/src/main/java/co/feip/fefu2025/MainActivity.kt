@@ -1,47 +1,26 @@
 package co.feip.fefu2025
 
+
 import android.os.Bundle
 import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import co.feip.fefu2025.ui.theme.FEFU2025AndroidBaseRepoTheme
+import co.feip.fefu2025.databinding.MainActivityBinding
+import kotlin.random.Random
 
 class MainActivity : ComponentActivity() {
+    private val binding: MainActivityBinding by lazy {
+        MainActivityBinding.inflate(layoutInflater)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContent {
-            FEFU2025AndroidBaseRepoTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "FEIP",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
+        setContentView(binding.root)
+        binding.button.setOnClickListener {
+            val lang = LanguageTag(this).apply {
+                languageName = Constants.languages.random()
+                tagColor = -0x1000000 or Random.nextInt(0xFFFFFF)
+                usagePercentage = Random.nextFloat() * 100
             }
+            binding.layout.addView(lang)
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    FEFU2025AndroidBaseRepoTheme {
-        Greeting("Android")
     }
 }
